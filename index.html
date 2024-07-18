@@ -204,11 +204,11 @@
             <p class="description">Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.</p>
             <div class="sizes">
                 <h3>Sizes</h3>
-                <button>XS</button>
-                <button>S</button>
-                <button>M</button>
-                <button>L</button>
-                <button>XL</button>
+                <button onclick="selectSize('XS')">XS</button>
+                <button onclick="selectSize('S')">S</button>
+                <button onclick="selectSize('M')">M</button>
+                <button onclick="selectSize('L')">L</button>
+                <button onclick="selectSize('XL')">XL</button>
             </div>
             <div class="colors">
                 <h3>Color</h3>
@@ -227,6 +227,7 @@
 
     <script>
         let selectedColor = '';
+        let selectedSize = '';
 
         function changeMainImage(thumbnail) {
             const mainImage = thumbnail.closest('.container').querySelector('.main-image img');
@@ -238,9 +239,14 @@
             console.log('Selected color:', selectedColor);
         }
 
+        function selectSize(size) {
+            selectedSize = size;
+            console.log('Selected size:', selectedSize);
+        }
+
         function sendToWhatsApp(productName, productPrice, productLink) {
             var phoneNumber = "+9940552163114"; // WhatsApp nömrənizi daxil edin
-            var message = "Salam, mən " + productName + " adlı məhsulu sifariş etmək istəyirəm. Rəng: " + selectedColor + ". Məhsulun linki: " + productLink;
+            var message = "Salam, mən " + productName + " adlı məhsulu sifariş etmək istəyirəm. Rəng: " + selectedColor + ", Ölçü: " + selectedSize + ". Məhsulun linki: " + productLink;
             var url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
